@@ -3,141 +3,159 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Christmas Card</title>
+<title>Christmas Card Style Player</title>
 <style>
     body {
         margin: 0;
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        background: #f9f9f9;
+        background: #eee;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
+        font-family: "Helvetica Neue", Arial, sans-serif;
     }
 
     .card {
-        position: relative;
-        width: 300px;
         background: #fff;
-        border-radius: 10px;
+        padding: 20px;
+        border-radius: 8px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        overflow: hidden;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
     }
 
     .card img {
         width: 100%;
+        border-radius: 4px;
         display: block;
-        object-fit: cover;
-        height: 200px;
+        margin-bottom: 15px;
     }
 
-    .card-content {
-        padding: 1em;
-        text-align: center;
+    .track-info {
+        width: 100%;
+        position: relative;
+        text-align: left;
+        margin-bottom: 10px;
     }
 
-    .card-title {
-        font-size: 1.2rem;
-        margin: 0.5em 0 0.2em;
+    .track-title {
+        font-size: 1rem;
         font-weight: bold;
+        margin: 0;
         color: #333;
     }
 
-    .card-subtitle {
+    .track-artist {
         font-size: 0.9rem;
         color: #666;
-        margin: 0 0 1em;
+        margin: 2px 0 0 0;
     }
 
-    .card-controls {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.5em 1em;
-        border-top: 1px solid #eee;
-        background: #fafafa;
+    .heart-icon {
+        position: absolute;
+        right: 0;
+        top: 0;
         font-size: 1.2rem;
-        box-sizing: border-box;
+        color: #333;
     }
 
     .progress-container {
-        flex: 1;
-        margin: 0 0.5em;
-        display: flex;
-        align-items: center;
+        width: 100%;
+        margin: 15px 0;
+        position: relative;
+    }
+
+    .time-left, .time-right {
+        font-size: 0.8rem;
+        color: #666;
+        position: absolute;
+        top: -20px;
+    }
+    .time-left {
+        left: 0;
+    }
+    .time-right {
+        right: 0;
     }
 
     .progress-bar {
         width: 100%;
-        height: 4px;
-        background: #ddd;
+        height: 3px;
+        background: #ccc;
         border-radius: 2px;
-        overflow: hidden;
         position: relative;
     }
 
-    .progress-fill {
-        height: 100%;
+    .progress-knob {
+        width: 12px;
+        height: 12px;
         background: #333;
-        width: 0; /* start with no progress */
-        transition: width 0.3s ease;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
-    .play-btn, .pause-btn {
+    .controls {
+        width: 100%;
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-size: 1.2rem;
+        color: #333;
+    }
+
+    .controls button {
         background: none;
         border: none;
-        font-size: 1.3rem;
         cursor: pointer;
-        color: #333;
+        font-size: 1.3rem;
+    }
+
+    /* Extra styling for "play/pause" button to make it stand out, 
+       like a drawn circle around it. */
+    .play-pause {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #333;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.3rem;
     }
 </style>
 </head>
 <body>
 
-<div class="card" id="card">
-    <img src="elves.webp" alt="Elves" id="cardImg">
-    <div class="card-content">
-        <div class="card-title">Veseli prazniki</div>
-        <div class="card-subtitle">Nataša Koprivnik</div>
+<div class="card">
+    <img src="elves.webp" alt="Elves Image"/>
+    <div class="track-info">
+        <p class="track-title">Golden</p>
+        <p class="track-artist">Harry Styles</p>
+        <span class="heart-icon">❤</span>
     </div>
-    <div class="card-controls">
-        <button class="play-btn" id="playBtn">&#9654;</button>
-        <div class="progress-container">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
+    <div class="progress-container">
+        <span class="time-left">2:10</span>
+        <span class="time-right">-1:08</span>
+        <div class="progress-bar">
+            <div class="progress-knob"></div>
         </div>
-        <div class="time">2:10</div>
+    </div>
+    <div class="controls">
+        <!-- Previous Track -->
+        <button id="prevBtn">⏮</button>
+        <!-- Play/Pause Button -->
+        <button class="play-pause" id="playPauseBtn">⏸</button>
+        <!-- Next Track -->
+        <button id="nextBtn">⏭</button>
     </div>
 </div>
-
-<script>
-    const playBtn = document.getElementById('playBtn');
-    const progressFill = document.getElementById('progressFill');
-    const cardImg = document.getElementById('cardImg');
-    let isPlaying = false;
-
-    playBtn.addEventListener('click', () => {
-        if (!isPlaying) {
-            // Switch to pause icon
-            playBtn.textContent = '⏸';
-            // Increase the progress bar width slightly to simulate playing
-            progressFill.style.width = '30%';
-            // Change image from elves.webp to elves2.webp
-            cardImg.src = 'elves2.webp';
-            isPlaying = true;
-        } else {
-            // Switch back to play icon
-            playBtn.textContent = '▶';
-            // Reset progress
-            progressFill.style.width = '0';
-            // Change image back to elves.webp
-            cardImg.src = 'elves.webp';
-            isPlaying = false;
-        }
-    });
-</script>
 
 </body>
 </html>
