@@ -17,7 +17,7 @@
 
     .card {
         background: #fff;
-        padding: 40px; /* doubled from 20px */
+        padding: 40px; /* doubled from previous 20px */
         border-radius: 16px; /* doubled from 8px */
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         width: 600px; /* doubled from 300px */
@@ -29,16 +29,16 @@
 
     .card img {
         width: 100%;
-        border-radius: 8px; /* doubled from 4px */
+        border-radius: 8px;
         display: block;
-        margin-bottom: 30px; /* doubled from 15px */
+        margin-bottom: 30px;
     }
 
     .track-info {
         width: 100%;
         position: relative;
         text-align: left;
-        margin-bottom: 20px; /* doubled from 10px */
+        margin-bottom: 20px;
     }
 
     .track-title {
@@ -51,20 +51,20 @@
     .track-artist {
         font-size: 1.8rem; /* doubled from 0.9rem */
         color: #666;
-        margin: 4px 0 0 0; /* doubled spacing */
+        margin: 4px 0 0 0;
     }
 
     .heart-icon {
         position: absolute;
         right: 0;
         top: 0;
-        font-size: 2.4rem; /* doubled from 1.2rem */
+        font-size: 2.4rem;
         color: #333;
     }
 
     .progress-container {
         width: 100%;
-        margin: 30px 0; /* doubled from 15px */
+        margin: 30px 0; 
         position: relative;
     }
 
@@ -72,7 +72,7 @@
         font-size: 1.6rem; /* doubled from 0.8rem */
         color: #666;
         position: absolute;
-        top: -40px; /* moved up more due to larger scale */
+        top: -40px;
     }
 
     .time-left {
@@ -86,28 +86,29 @@
         width: 100%;
         height: 6px; /* doubled from 3px */
         background: #ccc;
-        border-radius: 4px; /* doubled from 2px */
+        border-radius: 4px;
         position: relative;
     }
 
     .progress-knob {
         width: 24px; /* doubled from 12px */
-        height: 24px; /* doubled from 12px */
+        height: 24px;
         background: #333;
         border-radius: 50%;
         position: absolute;
         top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateY(-50%);
+        left: 0%; /* start at the far left */
+        transition: left 0.3s ease;
     }
 
     .controls {
         width: 100%;
-        margin-top: 30px; /* doubled from 15px */
+        margin-top: 30px;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        font-size: 2.4rem; /* doubled from 1.2rem */
+        font-size: 2.4rem;
         color: #333;
     }
 
@@ -115,18 +116,32 @@
         background: none;
         border: none;
         cursor: pointer;
-        font-size: 2.6rem; /* slightly bigger than doubled for clarity */
+        font-size: 2.6rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .play-pause {
-        width: 80px; /* doubled from 40px */
-        height: 80px; /* doubled from 40px */
-        border: 4px solid #333; /* doubled from 2px */
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 2.6rem; /* slightly bigger for clarity */
+        width: 80px; 
+        height: 80px;
+        position: relative;
+    }
+
+    .play-pause svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .play-pause .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2.6rem;
+        color: #333;
     }
 </style>
 </head>
@@ -144,14 +159,19 @@
         <span class="time-left">2:10</span>
         <span class="time-right">-1:08</span>
         <div class="progress-bar">
-            <div class="progress-knob"></div>
+            <div class="progress-knob" id="progressKnob"></div>
         </div>
     </div>
     <div class="controls">
         <!-- Previous Track -->
         <button id="prevBtn">⏮</button>
-        <!-- Play/Pause Button initially "play" with a circle -->
-        <button class="play-pause" id="playPauseBtn">▶</button>
+        <!-- Play/Pause Button (circular using SVG) -->
+        <button class="play-pause" id="playPauseBtn">
+            <svg width="80" height="80">
+                <circle cx="40" cy="40" r="36" stroke="#333" stroke-width="4" fill="none"></circle>
+            </svg>
+            <span class="icon">▶</span>
+        </button>
         <!-- Next Track -->
         <button id="nextBtn">⏭</button>
     </div>
@@ -160,20 +180,26 @@
 <script>
     const playPauseBtn = document.getElementById('playPauseBtn');
     const cardImg = document.getElementById('cardImg');
+    const progressKnob = document.getElementById('progressKnob');
     let isPlaying = false;
 
     playPauseBtn.addEventListener('click', () => {
+        const icon = playPauseBtn.querySelector('.icon');
         if (!isPlaying) {
             // Switch to pause icon
-            playPauseBtn.textContent = '⏸';
+            icon.textContent = '⏸';
             // Change image from elves2.webp to elves.webp
             cardImg.src = 'elves.webp';
+            // Move progress knob to the middle
+            progressKnob.style.left = '50%';
             isPlaying = true;
         } else {
             // Switch back to play icon
-            playPauseBtn.textContent = '▶';
-            // Change back to original image if desired
+            icon.textContent = '▶';
+            // Change back to original image
             cardImg.src = 'elves2.webp';
+            // Move progress knob back to start
+            progressKnob.style.left = '0%';
             isPlaying = false;
         }
     });
