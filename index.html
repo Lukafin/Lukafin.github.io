@@ -117,8 +117,6 @@
         font-size: 1.3rem;
     }
 
-    /* Extra styling for "play/pause" button to make it stand out, 
-       like a drawn circle around it. */
     .play-pause {
         width: 40px;
         height: 40px;
@@ -134,7 +132,7 @@
 <body>
 
 <div class="card">
-    <img src="elves.webp" alt="Elves Image"/>
+    <img src="elves2.webp" alt="Elves Image" id="cardImg"/>
     <div class="track-info">
         <p class="track-title">Golden</p>
         <p class="track-artist">Harry Styles</p>
@@ -150,12 +148,34 @@
     <div class="controls">
         <!-- Previous Track -->
         <button id="prevBtn">⏮</button>
-        <!-- Play/Pause Button -->
-        <button class="play-pause" id="playPauseBtn">⏸</button>
+        <!-- Play/Pause Button initially "play" -->
+        <button class="play-pause" id="playPauseBtn">▶</button>
         <!-- Next Track -->
         <button id="nextBtn">⏭</button>
     </div>
 </div>
+
+<script>
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const cardImg = document.getElementById('cardImg');
+    let isPlaying = false;
+
+    playPauseBtn.addEventListener('click', () => {
+        if (!isPlaying) {
+            // Switch to pause icon
+            playPauseBtn.textContent = '⏸';
+            // Change image from elves2.webp to elves.webp
+            cardImg.src = 'elves.webp';
+            isPlaying = true;
+        } else {
+            // Switch back to play icon
+            playPauseBtn.textContent = '▶';
+            // Change back to original image if desired
+            cardImg.src = 'elves2.webp';
+            isPlaying = false;
+        }
+    });
+</script>
 
 </body>
 </html>
