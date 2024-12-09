@@ -17,10 +17,10 @@
 
     .card {
         background: #fff;
-        padding: 20px;
-        border-radius: 8px;
+        padding: 40px; /* doubled from 20px */
+        border-radius: 16px; /* doubled from 8px */
         box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        width: 300px;
+        width: 600px; /* doubled from 300px */
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -29,51 +29,52 @@
 
     .card img {
         width: 100%;
-        border-radius: 4px;
+        border-radius: 8px; /* doubled from 4px */
         display: block;
-        margin-bottom: 15px;
+        margin-bottom: 30px; /* doubled from 15px */
     }
 
     .track-info {
         width: 100%;
         position: relative;
         text-align: left;
-        margin-bottom: 10px;
+        margin-bottom: 20px; /* doubled from 10px */
     }
 
     .track-title {
-        font-size: 1rem;
+        font-size: 2rem; /* doubled from 1rem */
         font-weight: bold;
         margin: 0;
         color: #333;
     }
 
     .track-artist {
-        font-size: 0.9rem;
+        font-size: 1.8rem; /* doubled from 0.9rem */
         color: #666;
-        margin: 2px 0 0 0;
+        margin: 4px 0 0 0; /* doubled spacing */
     }
 
     .heart-icon {
         position: absolute;
         right: 0;
         top: 0;
-        font-size: 1.2rem;
+        font-size: 2.4rem; /* doubled from 1.2rem */
         color: #333;
     }
 
     .progress-container {
         width: 100%;
-        margin: 15px 0;
+        margin: 30px 0; /* doubled from 15px */
         position: relative;
     }
 
     .time-left, .time-right {
-        font-size: 0.8rem;
+        font-size: 1.6rem; /* doubled from 0.8rem */
         color: #666;
         position: absolute;
-        top: -20px;
+        top: -40px; /* moved up more due to larger scale */
     }
+
     .time-left {
         left: 0;
     }
@@ -83,15 +84,15 @@
 
     .progress-bar {
         width: 100%;
-        height: 3px;
+        height: 6px; /* doubled from 3px */
         background: #ccc;
-        border-radius: 2px;
+        border-radius: 4px; /* doubled from 2px */
         position: relative;
     }
 
     .progress-knob {
-        width: 12px;
-        height: 12px;
+        width: 24px; /* doubled from 12px */
+        height: 24px; /* doubled from 12px */
         background: #333;
         border-radius: 50%;
         position: absolute;
@@ -102,11 +103,11 @@
 
     .controls {
         width: 100%;
-        margin-top: 15px;
+        margin-top: 30px; /* doubled from 15px */
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        font-size: 1.2rem;
+        font-size: 2.4rem; /* doubled from 1.2rem */
         color: #333;
     }
 
@@ -114,24 +115,25 @@
         background: none;
         border: none;
         cursor: pointer;
-        font-size: 1.3rem;
+        font-size: 2.6rem; /* slightly bigger than doubled for clarity */
     }
 
     .play-pause {
-        width: 40px;
-        height: 40px;
-        border: 2px solid #333;
+        width: 80px; /* doubled from 40px */
+        height: 80px; /* doubled from 40px */
+        border: 4px solid #333; /* doubled from 2px */
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 1.3rem;
+        font-size: 2.6rem; /* slightly bigger for clarity */
     }
 </style>
 </head>
 <body>
 
 <div class="card">
+    <!-- Initial image is elves2.webp, will switch to elves.webp on play -->
     <img src="elves2.webp" alt="Elves Image" id="cardImg"/>
     <div class="track-info">
         <p class="track-title">Golden</p>
@@ -148,7 +150,7 @@
     <div class="controls">
         <!-- Previous Track -->
         <button id="prevBtn">⏮</button>
-        <!-- Play/Pause Button initially "play" -->
+        <!-- Play/Pause Button initially "play" with a circle -->
         <button class="play-pause" id="playPauseBtn">▶</button>
         <!-- Next Track -->
         <button id="nextBtn">⏭</button>
