@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Christmas Card</title>
+<style>
+    body {
+        margin: 0;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        background: #f9f9f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .card {
+        position: relative;
+        width: 300px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .card img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        height: 200px;
+    }
+
+    .card-content {
+        padding: 1em;
+        text-align: center;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        margin: 0.5em 0 0.2em;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .card-subtitle {
+        font-size: 0.9rem;
+        color: #666;
+        margin: 0 0 1em;
+    }
+
+    .card-controls {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5em 1em;
+        border-top: 1px solid #eee;
+        background: #fafafa;
+        font-size: 1.2rem;
+        box-sizing: border-box;
+    }
+
+    .progress-container {
+        flex: 1;
+        margin: 0 0.5em;
+        display: flex;
+        align-items: center;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 4px;
+        background: #ddd;
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: #333;
+        width: 0; /* start with no progress */
+        transition: width 0.3s ease;
+    }
+
+    .play-btn, .pause-btn {
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        cursor: pointer;
+        color: #333;
+    }
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+    <img src="elves.webp" alt="Elves" id="cardImg">
+    <div class="card-content">
+        <div class="card-title">Veseli prazniki</div>
+        <div class="card-subtitle">Nataša Koprivnik</div>
+    </div>
+    <div class="card-controls">
+        <button class="play-btn" id="playBtn">&#9654;</button>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+        <div class="time">2:10</div>
+    </div>
+</div>
+
+<script>
+    const playBtn = document.getElementById('playBtn');
+    const progressFill = document.getElementById('progressFill');
+    const cardImg = document.getElementById('cardImg');
+    let isPlaying = false;
+
+    playBtn.addEventListener('click', () => {
+        if (!isPlaying) {
+            // Switch to pause icon
+            playBtn.textContent = '⏸';
+            // Increase the progress bar width slightly to simulate playing
+            progressFill.style.width = '30%';
+            // Change image from elves.webp to elves2.webp
+            cardImg.src = 'elves2.webp';
+            isPlaying = true;
+        } else {
+            // Switch back to play icon
+            playBtn.textContent = '▶';
+            // Reset progress
+            progressFill.style.width = '0';
+            // Change image back to elves.webp
+            cardImg.src = 'elves.webp';
+            isPlaying = false;
+        }
+    });
+</script>
+
+</body>
+</html>
