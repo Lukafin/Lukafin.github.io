@@ -16,16 +16,19 @@
     }
 
     .card {
-        background: #fff;
-        padding: 40px; 
-        border-radius: 16px; 
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        width: 600px; 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-    }
+    background: #fff;
+    padding: 40px; 
+    border-radius: 16px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 600px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transform: scale(0.6);
+    transform-origin: center center;
+}
+
 
     .card img {
         width: 100%;
@@ -166,10 +169,10 @@
 
 <div class="card">
     <!-- Initial image is elves2.webp, will switch to elves.webp on play -->
-    <img src="elves2.webp" alt="Elves Image" id="cardImg"/>
+    <img src="Smreka1.jpg" alt="Elves Image" id="cardImg"/>
     <div class="track-info">
-        <p class="track-title">Golden</p>
-        <p class="track-artist">Harry Styles</p>
+        <p class="track-title">Veliko praznične topline in miru</p>
+        <p class="track-artist">Nataša Koprivnikar</p>
         <!-- Heart starts empty (no fill) -->
         <div class="heart-icon" id="heartIcon">
             <svg viewBox="0 0 24 24">
@@ -215,7 +218,7 @@
             // Switch to pause icon
             icon.textContent = '⏸';
             // Change image from elves2.webp to elves.webp
-            cardImg.src = 'elves.webp';
+            cardImg.src = 'Smreka2.jpg';
             // Move progress knob to the end (100%)
             progressKnob.style.left = '100%';
             // Change yearDisplay to 2025
@@ -225,7 +228,7 @@
             // Switch back to play icon
             icon.textContent = '▶';
             // Change back to original image
-            cardImg.src = 'elves2.webp';
+            cardImg.src = 'Smreka1.jpg';
             // Move progress knob back to start (0%)
             progressKnob.style.left = '0%';
             // Change yearDisplay back to 2024
