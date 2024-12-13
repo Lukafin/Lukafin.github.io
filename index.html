@@ -40,26 +40,26 @@
         width: 100%;
         position: relative;
         text-align: left;
-        margin-bottom: 20px;
+        margin-bottom: 60px;
     }
 
     .track-title {
-        font-size: 2rem; 
+        font-size: 1.6rem;
         font-weight: bold;
-        margin: 0;
+        margin: 0 0 10px 0;
         color: #333;
     }
 
     .track-artist {
-        font-size: 1.8rem; 
+        font-size: 1.4rem;
         color: #666;
-        margin: 4px 0 0 0;
+        margin: 0;
     }
 
     .heart-icon {
         position: absolute;
         right: 0;
-        top: 0;
+        top: -5px;
         width: 40px;
         height: 40px;
         cursor: pointer;
@@ -133,7 +133,7 @@
         width: 100%;
         margin-top: 30px;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
         font-size: 2.4rem;
         color: #333;
@@ -148,25 +148,25 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        width: 60px;
+        height: 60px;
+        margin: 0 10px;
     }
 
     .play-pause {
-        width: 80px; 
-        height: 80px;
+        width: 60px; 
+        height: 60px;
         position: relative;
-    }
-
-    .play-pause svg {
-        position: absolute;
-        top: 0;
-        left: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 2.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .play-pause .icon {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         font-size: 2.6rem;
         color: #333;
     }
@@ -206,9 +206,6 @@
     <div class="controls">
         <button id="prevBtn">⏮</button>
         <button class="play-pause" id="playPauseBtn">
-            <svg width="80" height="80">
-                <circle cx="40" cy="40" r="36" stroke="#333" stroke-width="4" fill="none"></circle>
-            </svg>
             <span class="icon">▶</span>
         </button>
         <button id="nextBtn">⏭</button>
