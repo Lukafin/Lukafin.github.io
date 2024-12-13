@@ -170,6 +170,15 @@
         font-size: 2.6rem;
         color: #333;
     }
+
+    /* Added styles for the logo */
+    .progress-container .logo {
+        position: absolute;
+        width: 95px;
+        height: 65px;
+        right: 0;
+        top: -70px;
+    }
 </style>
 </head>
 <body>
@@ -188,6 +197,8 @@
     <div class="progress-container">
         <span class="time-left" id="timeLeft">2024</span>
         <span class="time-right" id="timeRight">2025</span>
+        <!-- Added logo image here -->
+        <img src="logo.jpg" class="logo" alt="Logo" />
         <div class="progress-bar">
             <div class="progress-knob" id="progressKnob"></div>
         </div>
